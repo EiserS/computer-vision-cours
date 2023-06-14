@@ -18,7 +18,7 @@ img_cnt = cv2.drawContours(image=img.copy(), contours=[contours[4]], contourIdx=
 cv2.imshow('image contour', img_cnt)
 #    cv2.waitKey(0)
 max_area = 0
-# idx_flag_area = -1
+idx_flag_area = -1
 for idx, contour in enumerate(contours):
     area = cv2.contourArea(contour=contour, oriented=True)
     if area > max_area:
