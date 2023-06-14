@@ -10,10 +10,13 @@ while (True):
     img = frame
     # cv2.imshow('orginal2_img', img)
 
-    grey = cv2.cvtColor(src=img, code=cv2.COLOR_BGR2GRAY)
+    gray = cv2.cvtColor(src=img, code=cv2.COLOR_BGR2GRAY)
     # cv2.imshow('grey', grey)
 
-    thresh = cv2.threshold(src=grey, thresh=250, maxval=255, type=cv2.THRESH_BINARY)[1]
+    blur = cv2.GaussianBlur(src=gray, ksize=(5, 5), sigmaX=100)
+    # cv2.imshow('blur', blur)
+
+    thresh = cv2.threshold(src=blur, thresh=230, maxval=255, type=cv2.THRESH_BINARY)[1]
     # cv2.imshow('thresh', thresh)
 
     contours = cv2.findContours(image=thresh, mode=cv2.RETR_LIST, method=cv2.CHAIN_APPROX_SIMPLE)[0]
@@ -37,6 +40,7 @@ while (True):
     # cv2.imshow('img_cnt_max_area', img_cnt_max_area)
 
     # Display the resulting frame
+    cv2.imshow('frame_thresh', thresh)
     cv2.imshow('frame', img_cnt_max_area)
 
     # the 'q' button is set as the
